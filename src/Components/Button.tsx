@@ -7,11 +7,11 @@ function Button() {
     // https://bobbyhadz.com/blog/react-open-file-input-on-button-click
     const inputRef = useRef(null);
     // 👇️ open file input box on click of other element
-    const handleClick = () => {
+    const handleClick = (): void => {
         inputRef.current.click();
     };
 
-    const handleFileChange = event => {
+    const handleFileChange = (event: any): void => {
         const fileObj = event.target.files && event.target.files[0];
         if (!fileObj) {
           return;

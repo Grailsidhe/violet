@@ -1,33 +1,33 @@
 //import './Styles.css';
-import React from 'react';
-import {useRef} from 'react';
+import React from 'react'
+import {useRef} from 'react'
 
-function Button() {
+const Button: React.FC = () =>  {
 
     // https://bobbyhadz.com/blog/react-open-file-input-on-button-click
-    const inputRef = useRef(null);
+    const inputRef: any = useRef(null)
     // 👇️ open file input box on click of other element
     const handleClick = (): void => {
-        inputRef.current.click();
+        inputRef.current.click()
     };
 
     const handleFileChange = (event: any): void => {
-        const fileObj = event.target.files && event.target.files[0];
+        const fileObj: any = event.target.files && event.target.files[0]
         if (!fileObj) {
-          return;
+          return
         }
     
-        console.log('fileObj is', fileObj);
+        console.log('fileObj is', fileObj)
     
         // 👇️ reset file input
-        event.target.value = null;
+        event.target.value = null
     
         // 👇️ is now empty
-        console.log(event.target.files);
+        console.log(event.target.files)
     
         // 👇️ can still access file object here
-        console.log(fileObj);
-        console.log(fileObj.name);
+        console.log(fileObj)
+        console.log(fileObj.name)
       };
 
   return (
@@ -41,7 +41,7 @@ function Button() {
 
         <button onClick={handleClick}>Open file</button>
     </div>
-  );
+  )
 }
 
-export default Button;
+export default Button

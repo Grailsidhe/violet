@@ -1,5 +1,5 @@
 import './App.css'
-import Button from './Components/Button.js'
+import Button from './Components/Button'
 
 const App: React.FC = () => {
 

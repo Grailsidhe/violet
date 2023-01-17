@@ -1,8 +1,13 @@
-//import './Styles.css';
-import React from 'react'
-import {useRef} from 'react'
+import './styles.css'
+import React, { useRef, useState } from 'react'
 
-const Button: React.FC = () =>  {
+interface Props {
+  text: string,
+}
+
+const Upload: React.FC<Props> = (props): JSX.Element =>  {
+
+    const [fileObj1, setFileObj1] = useState<any>({})
 
     // https://bobbyhadz.com/blog/react-open-file-input-on-button-click
     const inputRef: any = useRef(null)
@@ -10,6 +15,11 @@ const Button: React.FC = () =>  {
     const handleClick = (): void => {
         inputRef.current.click()
     };
+
+    const handleClear = (): void => {
+      // find code to clear the browser file
+      setFileObj1({})
+    }
 
     const handleFileChange = (event: any): void => {
         const fileObj: any = event.target.files && event.target.files[0]
@@ -28,20 +38,26 @@ const Button: React.FC = () =>  {
         // 👇️ can still access file object here
         console.log(fileObj)
         console.log(fileObj.name)
+
+        setFileObj1(fileObj)
       };
 
   return (
-    <div className="button">
-        <input
+    <div className="input-wrapper">
+        <input // not HTML! react
             style={{display: 'none'}}
             ref={inputRef}
             type="file"
             onChange={handleFileChange}
         />
-
-        <button onClick={handleClick}>Open file</button>
+        <button onClick={handleClick}>{props.text}</button>
+        <button onClick={handleClear}>Clear</button>
+        <br />
+        <p className="file-name">
+        {fileObj1.name ? fileObj1.name : ""}
+        </p>
     </div>
   )
 }
 
-export default Button
+export default Upload

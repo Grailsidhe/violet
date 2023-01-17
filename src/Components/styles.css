@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+
+* {
+  color: rgb(55, 55, 55);
+}
+
+h2 {
+  font-family: "Comfortaa";
+}
+
+input,
+button,
+select {
+  padding: 7px;
+  border-radius: 5px;
+  border: 0;
+  background: rgb(205, 220, 252);
+  border: solid 1px rgb(205, 220, 252);
+  font-family: "Comfortaa";
+}
+
+label {
+  margin: 10;
+}
+
+select:focus {
+  outline: solid 1px rgb(145, 180, 253);
+}
+
+button {
+  background: rgb(145, 180, 253);
+  padding: 7px 10px;
+  margin: 0 10px 0 10px;
+}
+
+button:hover {
+  transition: all 0.2s;
+  background: transparent;
+  border: solid 1px rgb(145, 180, 253);
+  color: rgb(67, 119, 231);
+}
+
+button:active {
+  transform: translate(1px, 1px);
+}
+
+label {
+  margin-top: 0;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    padding: 20px;
+    margin: auto;
+    background-color: rgb(249, 251, 255);
+    border: 1px solid rgb(215, 222, 231);
+    margin: 30px;
+    border-radius: 5px;
+    
+}
+
+.upload-wrapper {
+    display: flex;
+    width: 800px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    margin: auto;
+}
+
+.input-wrapper {
+  margin-top: 0;
+}
+
+.file-name {
+  font-size: 0.9em;
+  height: 1px;
+}

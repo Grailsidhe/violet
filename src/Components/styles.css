@@ -52,10 +52,12 @@ label {
     display: flex;
     flex-direction: column;
     align-content: space-between;
+    min-width: 700px;
     padding: 20px;
     margin: auto;
     background-color: rgb(249, 251, 255);
     border: 1px solid rgb(215, 222, 231);
+    filter: drop-shadow(0 0 0.55rem rgba(0, 0, 0, 0.136));
     margin: 30px;
     border-radius: 5px;
     
@@ -63,7 +65,7 @@ label {
 
 .upload-wrapper {
     display: flex;
-    width: 800px;
+    min-width: 700px;
     flex-direction: row;
     justify-content: space-between;
     padding: 20px;

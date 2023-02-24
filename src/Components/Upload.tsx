@@ -1,13 +1,18 @@
 import './styles.css'
 import React, { useRef, useState } from 'react'
+import fileClient from '../fileClient'
 
 interface Props {
   text: string,
+  execute: boolean,
+  format?: string,
+  action: string
 }
 
-const Upload: React.FC<Props> = (props): JSX.Element =>  {
+const Upload: React.FC<Props> = (props: any): JSX.Element =>  {
 
     const [fileObj1, setFileObj1] = useState<any>({})
+    const [filePath1, setFilePath1] = useState<any>()
 
     // https://bobbyhadz.com/blog/react-open-file-input-on-button-click
     const inputRef: any = useRef(null)
@@ -17,18 +22,16 @@ const Upload: React.FC<Props> = (props): JSX.Element =>  {
     };
 
     const handleClear = (): void => {
-      // find code to clear the browser file
       setFileObj1({})
     }
 
     const handleFileChange = (event: any): void => {
-        const fileObj: any = event.target.files && event.target.files[0]
+        const fileObj: any = event.target.files && event.target.files[0] as HTMLInputElement
+        //const filePath = URL.createObjectURL(event.target.files[0])
+
         if (!fileObj) {
           return
         }
-    
-        console.log('fileObj is', fileObj)
-    
         // 👇️ reset file input
         event.target.value = null
     
@@ -36,22 +39,24 @@ const Upload: React.FC<Props> = (props): JSX.Element =>  {
         console.log(event.target.files)
     
         // 👇️ can still access file object here
-        console.log(fileObj)
-        console.log(fileObj.name)
+        //console.log(fileObj.name)
 
         setFileObj1(fileObj)
       };
+      console.log("fileObj: ", fileObj1)
+      // *** call on fileClient to process once exe is go and file is in storage
+      props.execute && fileObj1 && props.format ? fileClient(fileObj1, props.action, props.format) : console.log("void")
 
   return (
     <div className="input-wrapper">
-        <input // not HTML! react
+        <input
             style={{display: 'none'}}
             ref={inputRef}
             type="file"
             onChange={handleFileChange}
         />
         <button onClick={handleClick}>{props.text}</button>
-        <button onClick={handleClear}>Clear</button>
+        <button className="clear" onClick={handleClear}>Clear</button>
         <br />
         <p className="file-name">
         {fileObj1.name ? fileObj1.name : ""}

@@ -64,7 +64,6 @@ label {
     filter: drop-shadow(0 0 0.55rem rgba(0, 0, 0, 0.136));
     margin: 30px;
     border-radius: 5px;
-    
 }
 
 .upload-wrapper {
@@ -74,6 +73,11 @@ label {
     justify-content: space-between;
     padding: 20px;
     margin: auto;
+}
+
+.upload-wrapper-2 {
+  width: 350px;
+  min-width: 200px;
 }
 
 .input-wrapper {
@@ -89,4 +93,9 @@ label {
 .confirmation-button {
   height: 31px;
   background: rgb(134, 224, 124);
+}
+
+.message {
+  font-size: 0.9em;
+  margin-top: 5px;
 }

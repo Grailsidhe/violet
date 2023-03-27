@@ -12,6 +12,7 @@ const CleanFields: React.FC = () =>  {
     const [fileObj, setFileObj] = useState<any>({})
     const [exe, setExe] = useState<boolean>(false)
     const [downloadURL, setDownloadURL] = useState("")
+    const [filePending, setFilePending] = useState(false)
 
     // call fileClient to process data on exe === true
     const fileClient = async (
@@ -57,6 +58,10 @@ const CleanFields: React.FC = () =>  {
         setDownloadURL("")
     }, [fileObj])
 
+    useEffect(() => {
+        fileObj.name ? setFilePending(true) : setFilePending(false)
+    }, [fileObj])
+
     return (
         <div className="wrapper">
             <h2>Clean Fields</h2>
@@ -64,7 +69,7 @@ const CleanFields: React.FC = () =>  {
 
                 <Upload text="Upload File" file={(obj: {}) => setFileObj(obj)} fileName={fileObj.name} />
 
-                <Execute switchAction={(bool: boolean) => setExe(bool)} downloadURL={downloadURL} filePending={fileObj} clearAll={() => setFileObj("")} />
+                <Execute switchAction={(bool: boolean) => setExe(bool)} downloadURL={downloadURL} filePending={filePending} clearAll={() => setFileObj("")} />
 
                 <label className="input-wrapper">
                     Format &nbsp;

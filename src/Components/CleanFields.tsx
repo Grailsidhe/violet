@@ -4,17 +4,18 @@ import Execute from './Execute'
 import Papa from 'papaparse'
 import _ from 'lodash'
 import './styles.css'
+import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory'
 
 const CleanFields: React.FC = () =>  {
 
     const [selectOption, setSelectOption] = useState<string>("format-1") // marker for function
-    const [fileObj, setFileObj] = useState({})
+    const [fileObj, setFileObj] = useState<any>({})
     const [exe, setExe] = useState<boolean>(false)
     const [downloadURL, setDownloadURL] = useState("")
 
     // call fileClient to process data on exe === true
     const fileClient = async (
-        fileObject: any,
+        fileObj: any,
         format?: string
         ): Promise<void> => {
 
@@ -22,7 +23,7 @@ const CleanFields: React.FC = () =>  {
             const columns: any = []
             const file2: any = []
 
-            const data: any = Papa.parse(fileObject, { header: true, 
+            const data: any = Papa.parse(fileObj, { header: true, 
                 step: function(results: any, parser) {
                     console.log("Row data:", results.data)
                     console.log("Row errors:", results.errors)
@@ -61,9 +62,9 @@ const CleanFields: React.FC = () =>  {
             <h2>Clean Fields</h2>
             <div className='upload-wrapper'>
 
-                <Upload text="Upload File" file={(obj: {}) => setFileObj(obj)} />
+                <Upload text="Upload File" file={(obj: {}) => setFileObj(obj)} fileName={fileObj.name} />
 
-                <Execute switchAction={(bool: boolean) => setExe(bool)} downloadURL={downloadURL} filePending={fileObj} />
+                <Execute switchAction={(bool: boolean) => setExe(bool)} downloadURL={downloadURL} filePending={fileObj} clearAll={() => setFileObj("")} />
 
                 <label className="input-wrapper">
                     Format &nbsp;

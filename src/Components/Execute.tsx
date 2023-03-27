@@ -4,7 +4,8 @@ import './styles.css'
 interface Props {
     switchAction: any,
     downloadURL: any,
-    filePending: any
+    filePending: any,
+    clearAll: any
   }
 
 const Execute: React.FC<Props> = (props: any): JSX.Element =>  {
@@ -14,7 +15,7 @@ const Execute: React.FC<Props> = (props: any): JSX.Element =>  {
     const [action, setAction] = useState(false)
 
     const handleClick = () => {
-        if (props.filePending.name) {
+        if (props.filePending) {
             if (props.downloadURL) {
                 setMessage("")
                 window.location.href = props.downloadURL
@@ -34,11 +35,11 @@ const Execute: React.FC<Props> = (props: any): JSX.Element =>  {
     }, [action])
 
     useEffect(() => {
-        props.filePending.name ? (setMessage(""), setStatus("Execute"), setAction(false)) : null
+        props.filePending ? (setMessage(""), setStatus("Execute"), setAction(false)) : null
     }, [props.filePending])
 
     useEffect(() => {
-        if (action && props.filePending.name && !props.downloadURL) {
+        if (action && props.filePending && !props.downloadURL) {
             setStatus("Processing...")
         }
         else if (action && props.downloadURL) {
@@ -53,7 +54,7 @@ const Execute: React.FC<Props> = (props: any): JSX.Element =>  {
         <div>
            {status === "Processing..." ? status : <button className="confirmation-button" onClick={handleClick}>{status}</button>}
             <div className="message">
-                {message}
+                {status === "Download" ? <button className="refresh-button" onClick={() => props.clearAll("")}>Reset</button> : message}
             </div>
         </div>
     )

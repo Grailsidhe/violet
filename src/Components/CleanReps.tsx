@@ -7,14 +7,21 @@ import './styles.css'
 
 const CleanReps: React.FC = () =>  {
 
-    const [fileObj1, setFileObject1] = useState({})
-    const [fileObj2, setFileObject2] = useState({})
+    const [fileObj1, setFileObj1] = useState<any>({})
+    const [fileObj2, setFileObj2] = useState<any>({})
     const [exe, setExe] = useState<boolean>(false)
     const [downloadURL, setDownloadURL] = useState("")
     const [selectedRadioButton, setSelectedRadioButton] = useState("keepDoubles")
+    const [filePending, setFilePending] = useState(false)
 
     const handleFileChange = (obj: {}, file: string) => {
-        file === "1" ? setFileObject1(obj) : setFileObject2(obj)
+        file === "1" ? setFileObj1(obj) : setFileObj2(obj)
+    }
+
+    const handleClearAll = () => {
+        setFileObj1("")
+        setFileObj2("")
+        
     }
 
     const fileClient = async (
@@ -105,7 +112,11 @@ const CleanReps: React.FC = () =>  {
     useEffect(() => {
         fileClient(fileObj1, fileObj2, selectedRadioButton)
     }, [exe])
-    
+
+    useEffect(() => {
+        fileObj2.name && fileObj1.name ? setFilePending(true) : setFilePending(false)
+    }, [fileObj2, fileObj1])
+
     useEffect(() => {
         setDownloadURL("")
     }, [fileObj2])
@@ -115,11 +126,11 @@ const CleanReps: React.FC = () =>  {
             <h2>Clean Repetitions</h2>
             <div className='upload-wrapper'>
 
-                <Upload text="Upload File 1" file={(obj: any) => handleFileChange(obj, "1")} />
+                <Upload text="Upload File 1" file={(obj: any) => handleFileChange(obj, "1")} fileName={fileObj1.name} />
             
-                <Execute switchAction={(bool: boolean): void => setExe(bool)} downloadURL={downloadURL} filePending={fileObj2} />
+                <Execute switchAction={(bool: boolean): void => setExe(bool)} downloadURL={downloadURL} filePending={filePending} clearAll={handleClearAll} />
 
-                <Upload text="Upload File 2" file={(obj: any) => handleFileChange(obj, "2")} />
+                <Upload text="Upload File 2" file={(obj: any) => handleFileChange(obj, "2")} fileName={fileObj2.name} />
                 
             </div>
             <div className='upload-wrapper upload-wrapper-2'>

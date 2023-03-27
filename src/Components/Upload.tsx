@@ -1,14 +1,13 @@
 import './styles.css'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef } from 'react'
 
 interface Props {
   text: string,
-  file: object
+  file: object,
+  fileName?: string
 }
 
 const Upload: React.FC<Props> = (props: any): JSX.Element =>  {
-
-    const [fileObj1, setFileObj1] = useState<any>({})
 
     // https://bobbyhadz.com/blog/react-open-file-input-on-button-click
     const inputRef: any = useRef(null)
@@ -17,14 +16,6 @@ const Upload: React.FC<Props> = (props: any): JSX.Element =>  {
         inputRef.current.click()
     }
 
-    const handleClear = (): void => {
-      setFileObj1({})
-    }
-
-    useEffect(() => {
-      props.file(fileObj1)
-    }, [fileObj1])
-
     const handleFileChange = (event: any): void => {
         const fileObj: any = event.target.files && event.target.files[0] as HTMLInputElement
 
@@ -32,7 +23,7 @@ const Upload: React.FC<Props> = (props: any): JSX.Element =>  {
           return
         }
         event.target.value = null
-        setFileObj1(fileObj)
+        props.file(fileObj)
       }
 
   return (
@@ -44,10 +35,10 @@ const Upload: React.FC<Props> = (props: any): JSX.Element =>  {
             onChange={handleFileChange}
         />
         <button onClick={handleClick}>{props.text}</button>
-        <button className="clear" onClick={handleClear}>Clear</button>
+        <button className="clear" onClick={() => props.file("")}>Clear</button>
         <br />
         <p className="file-name">
-        {fileObj1.name}
+        { props.fileName }
         </p>
     </div>
   )

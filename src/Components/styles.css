@@ -95,7 +95,17 @@ label {
   background: rgb(134, 224, 124);
 }
 
+.refresh-button {
+  background: rgba(253, 145, 145, 0.308);
+  border: solid 1px rgb(253, 145, 145);
+}
+
+.refresh-button:hover {
+  background: transparent;
+  border: solid 1px rgb(145, 180, 253);
+  color: rgb(67, 119, 231);}
+
 .message {
   font-size: 0.9em;
-  margin-top: 5px;
+  margin-top: 20px;
 }

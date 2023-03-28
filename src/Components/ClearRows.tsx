@@ -5,7 +5,7 @@ import Papa from 'papaparse'
 import _ from 'lodash'
 import './styles.css'
 
-const CleanReps: React.FC = () =>  {
+const ClearRows: React.FC = () =>  {
 
     const [fileObj1, setFileObj1] = useState<any>({})
     const [fileObj2, setFileObj2] = useState<any>({})
@@ -123,7 +123,7 @@ const CleanReps: React.FC = () =>  {
 
     return (
         <div className="wrapper">
-            <h2>Clean Repetitions</h2>
+            <h2>Clear Rows</h2>
             <div className='upload-wrapper'>
 
                 <Upload text="Upload File 1" file={(obj: any) => handleFileChange(obj, "1")} fileName={fileObj1.name} />
@@ -147,4 +147,4 @@ const CleanReps: React.FC = () =>  {
     )
   }
   
-  export default CleanReps
+  export default ClearRows

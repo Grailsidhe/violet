@@ -54,7 +54,7 @@ const Execute: React.FC<Props> = (props: any): JSX.Element =>  {
         <div>
            {status === "Processing..." ? status : <button className="confirmation-button" onClick={handleClick}>{status}</button>}
             <div className="message">
-                {status === "Download" ? <button className="refresh-button" onClick={() => props.clearAll("")}>Reset</button> : message}
+                {status === "Download" ? <button className="refresh-button" onClick={() => props.clearAll("")}>Reset All</button> : message}
             </div>
         </div>
     )

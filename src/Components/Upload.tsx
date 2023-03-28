@@ -35,7 +35,7 @@ const Upload: React.FC<Props> = (props: any): JSX.Element =>  {
             onChange={handleFileChange}
         />
         <button onClick={handleClick}>{props.text}</button>
-        <button className="clear" onClick={() => props.file("")}>Clear</button>
+        <button className="clear" onClick={() => props.file("")}>Reset</button>
         <br />
         <p className="file-name">
         { props.fileName }

@@ -1,13 +1,13 @@
 import './App.css'
-import CleanFields from './Components/CleanFields'
-import CleanReps from './Components/CleanReps'
+import ClearColumns from './Components/ClearColumns'
+import ClearRows from './Components/ClearRows'
 
 const App: React.FC = () => {
 
   return (
     <div className="App">
-      <CleanReps />
-      <CleanFields />
+      <ClearRows />
+      <ClearColumns />
     </div>
   )
 }

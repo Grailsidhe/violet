@@ -6,7 +6,7 @@ import _ from 'lodash'
 import './styles.css'
 import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory'
 
-const CleanFields: React.FC = () =>  {
+const ClearColumns: React.FC = () =>  {
 
     const [selectOption, setSelectOption] = useState<string>("format-1") // marker for function
     const [fileObj, setFileObj] = useState<any>({})
@@ -55,16 +55,13 @@ const CleanFields: React.FC = () =>  {
     }, [exe])
 
     useEffect(() => {
-        setDownloadURL("")
-    }, [fileObj])
-
-    useEffect(() => {
         fileObj.name ? setFilePending(true) : setFilePending(false)
+        setDownloadURL("")
     }, [fileObj])
 
     return (
         <div className="wrapper">
-            <h2>Clean Fields</h2>
+            <h2>Clear Columns</h2>
             <div className='upload-wrapper'>
 
                 <Upload text="Upload File" file={(obj: {}) => setFileObj(obj)} fileName={fileObj.name} />
@@ -74,7 +71,7 @@ const CleanFields: React.FC = () =>  {
                 <label className="input-wrapper">
                     Format &nbsp;
                     <select onChange={(event) => setSelectOption(event.target.value)}>
-                        <option value={"format-1"}>first 2 columns</option>
+                        <option value={"format-1"}>column1,column2</option>
                         {/* <option value={"format-2"}>push_address,device_type</option> */}
                     </select>
                 </label>
@@ -83,4 +80,4 @@ const CleanFields: React.FC = () =>  {
     )
   }
   
-  export default CleanFields
+  export default ClearColumns

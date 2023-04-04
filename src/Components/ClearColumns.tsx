@@ -4,11 +4,10 @@ import Execute from './Execute'
 import Papa from 'papaparse'
 import _ from 'lodash'
 import './styles.css'
-import finalPropsSelectorFactory from 'react-redux/es/connect/selectorFactory'
 
 const ClearColumns: React.FC = () =>  {
 
-    const [selectOption, setSelectOption] = useState<string>("format-1") // marker for function
+    const [, setSelectOption] = useState<string>("format-1") // marker for function
     const [fileObj, setFileObj] = useState<any>({})
     const [exe, setExe] = useState<boolean>(false)
     const [downloadURL, setDownloadURL] = useState("")
